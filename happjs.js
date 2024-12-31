@@ -1,6 +1,6 @@
 const checkPassword = () => {
   const password = document.getElementById('password').value;
-  if (password === 'friend' || password === 'love') {
+  if (password === 'friend' ) {
       document.querySelector('.login').style.display = 'none';
       document.querySelector('.container').style.display = 'block';
   } else {
