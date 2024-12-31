@@ -1,49 +1,85 @@
-const box = document.getElementById("moving-box");
-const gameArea = document.getElementById("game-area");
+const checkPassword = () => {
+  const password = document.getElementById('password').value;
+  if (password === 'Doraemon') {
+      document.querySelector('.login').style.display = 'none';
+      document.querySelector('.container').style.display = 'block';
+  } else {
+      alert('Incorrect password. Please try again.');
+  }
+};
 
-// Variables to track dragging state
-let isDragging = false;
+const createConfetti = () => {
+  for (let i = 0; i < 100; i++) {
+      const confetti = document.createElement('div');
+      confetti.className = 'confetti';
+      confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
+      confetti.style.left = `${Math.random() * 100}vw`;
+      confetti.style.animationDuration = `${Math.random() * 2 + 3}s`;
+      document.body.appendChild(confetti);
+  }
+};
 
-// Event listener for mouse or touch start
-box.addEventListener("mousedown", startDrag);
-box.addEventListener("touchstart", startDrag);
+const createFireworks = () => {
+  for (let i = 0; i < 20; i++) {
+      const firework = document.createElement('div');
+      firework.className = 'fireworks';
+      firework.style.left = `${Math.random() * 100}vw`;
+      firework.style.top = `${Math.random() * 50}vh`;
+      firework.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
+      firework.style.animationDuration = `${Math.random() * 1 + 1}s`;
+      document.body.appendChild(firework);
+  }
+};
 
-// Event listener for movement
-document.addEventListener("mousemove", drag);
-document.addEventListener("touchmove", drag);
+createConfetti();
+createFireworks();
 
-// Event listener for drag end
-document.addEventListener("mouseup", stopDrag);
-document.addEventListener("touchend", stopDrag);
+const countdownElement = document.getElementById('countdown');
+const targetDate = new Date('January 1, 2025 00:00:00').getTime();
 
-// Start dragging
-function startDrag(event) {
-    isDragging = true;
-    box.style.cursor = "grabbing";
-}
+const updateCountdown = () => {
+  const now = new Date().getTime();
+  const timeLeft = targetDate - now;
 
-// Dragging logic
-function drag(event) {
-    if (!isDragging) return;
+  const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
 
-    // Get mouse or touch coordinates
-    const clientX = event.type === "mousemove" ? event.clientX : event.touches[0].clientX;
-    const clientY = event.type === "mousemove" ? event.clientY : event.touches[0].clientY;
+  countdownElement.textContent = `Countdown: ${days}d ${hours}h ${minutes}m ${seconds}s`;
 
-    // Get game area bounds
-    const bounds = gameArea.getBoundingClientRect();
+  if (timeLeft < 0) {
+      clearInterval(countdownTimer);
+      countdownElement.textContent = "Happy New Year! 🎆";
+  }
+};
 
-    // Calculate new position within bounds
-    const x = Math.min(bounds.width - 50, Math.max(0, clientX - bounds.left - 25));
-    const y = Math.min(bounds.height - 50, Math.max(0, clientY - bounds.top - 25));
+const countdownTimer = setInterval(updateCountdown, 1000);
 
-    // Update the position of the box
-    box.style.left = `${x}px`;
-    box.style.top = `${y}px`;
-}
+const musicButton = document.getElementById('musicButton');
+let audio = new Audio('https://www.bensound.com/bensound-music/bensound-happyrock.mp3');
 
-// Stop dragging
-function stopDrag() {
-    isDragging = false;
-    box.style.cursor = "grab";
-}
+musicButton.addEventListener('click', () => {
+  if (audio.paused) {
+      audio.play();
+      musicButton.textContent = 'Pause Music 🎵';
+  } else {
+      audio.pause();
+      musicButton.textContent = 'Play Music 🎵';
+  }
+});
+const seasons = ['spring', 'summer', 'autumn', 'winter'];
+let currentSeasonIndex = 0;
+
+// Function to change the season
+const changeSeason = () => {
+    document.body.classList.remove(...seasons); // Remove all season classes
+    document.body.classList.add(seasons[currentSeasonIndex]); // Add the current season class
+    currentSeasonIndex = (currentSeasonIndex + 1) % seasons.length; // Cycle through seasons
+};
+
+// Change the background every 15 seconds
+setInterval(changeSeason, 9000);
+
+// Initialize with the first season
+changeSeason();
