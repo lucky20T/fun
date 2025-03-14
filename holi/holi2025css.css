@@ -278,6 +278,9 @@ footer {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    .holi-header {
+        font-size: 1.2rem;
+    }
     .holi-text {
         font-size: 2rem;
     }
