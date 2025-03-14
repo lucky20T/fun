@@ -1,0 +1,300 @@
+/* General Styling 
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Poppins', sans-serif;
+    background: #0000009e;
+    color: white;
+    text-align: center;
+    position: relative;
+}
+/* Holi Header Styling 
+.holi-header {
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(90deg, #ff0000, #ff7300, #fffb00, #00ff04, #0091ff, #ff00ff);
+    animation: colorCycle 6s infinite alternate;
+    color: white;
+    font-size: 1.8rem;
+    font-weight: bold;
+    box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.4);
+    border-bottom: 4px solid white;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Cool color-changing effect 
+@keyframes colorCycle {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+}
+
+
+/* Particle Background 
+#particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+/* Container 
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+/* Holi Text 
+.holi-text {
+    font-size: 4rem;
+    font-weight: bold;
+    text-shadow: 0 0 15px #ff0000, 0 0 30px #ff7300, 0 0 45px #fffb00;
+    animation: neonGlow 2s infinite alternate, rainbow 2s infinite alternate;
+}
+
+/* Neon Glow Effect 
+@keyframes neonGlow {
+    0% { text-shadow: 0 0 15px #ff0000, 0 0 30px #ff7300, 0 0 45px #fffb00; }
+    50% { text-shadow: 0 0 20px #ff7300, 0 0 35px #fffb00, 0 0 50px #00ff04; }
+    100% { text-shadow: 0 0 25px #fffb00, 0 0 40px #00ff04, 0 0 55px #0091ff; }
+}
+
+/* Rainbow Color Animation 
+@keyframes rainbow {
+    0% { color: red; }
+    20% { color: orange; }
+    40% { color: yellow; }
+    60% { color: green; }
+    80% { color: blue; }
+    100% { color: violet; }
+}
+
+/* Message 
+.message {
+    font-size: 1.7rem;
+    margin: 15px 0;
+    text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.8);
+    animation: fadeIn 2s ease-in-out;
+}
+
+/* Fade In Effect 
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Button 
+#wishButton {
+    padding: 15px 40px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #00ff04, #0091ff, #ff00ff);
+    color: white;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#wishButton:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 25px rgba(255, 255, 255, 1);
+    background: linear-gradient(45deg, #ff00ff, #0091ff, #00ff04, #fffb00, #ff7300, #ff0000);
+}
+
+/* Floating Colors Animation 
+canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Firework Burst Animation 
+@keyframes burst {
+    0% { transform: scale(0); opacity: 1; }
+    50% { transform: scale(1.5); opacity: 0.8; }
+    100% { transform: scale(2); opacity: 0; }
+}
+/* .developer-section {
+    text-align: center;
+    padding: 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(90deg, #ff0000, #ff7300, #fffb00, #00ff04, #0091ff, #ff00ff);
+    animation: colorChange 5s infinite alternate;
+    border-top: 3px solid #fff;
+}
+
+.developer-name {
+    color: #fff;
+    font-size: 1.5rem;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Animation for background color changing 
+@keyframes colorChange {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+} */
+/* Ensure body and HTML take full height 
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Push footer to bottom 
+    align-items: center;
+}
+
+/* Developer Footer Styling 
+.developer-section {
+    text-align: center;
+    padding: 15px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(90deg, #ff0000, #ff7300, #fffb00, #00ff04, #0091ff, #ff00ff);
+    animation: colorChange 5s infinite alternate;
+    border-top: 3px solid #fff;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+
+.developer-name {
+    color: #fff;
+    font-size: 1.5rem;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Animation for background color changing 
+@keyframes colorChange {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+}*/
+/* Global Reset */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #000;
+    color: white;
+    text-align: center;
+    overflow-x: hidden;
+}
+@keyframes colorChange {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+}
+
+/* Animated Holi Header */
+.holi-header {
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(90deg, #ff0000, #ff7300, #fffb00, #00ff04, #0091ff, #ff00ff);
+    animation: colorChange 6s infinite alternate;
+    color: white;
+    font-size: 1.3rem;
+    font-weight: bold;
+    box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.4);
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    position: relative;
+    
+}
+
+/* Main Content */
+.container {
+    margin-top: 100px;
+}
+
+.holi-text {
+    font-size: 3rem;
+    text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.8);
+}
+
+.message {
+    font-size: 1.2rem;
+    margin: 20px auto;
+    width: 80%;
+}
+
+/* Button Styling */
+#wishButton {
+    padding: 15px 30px;
+    font-size: 1.5rem;
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #00ff04, #0091ff, #ff00ff);
+    animation: colorChange 6s infinite alternate;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+#wishButton:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+}
+
+/* Developer Section */
+.developer-section {
+    margin-top: 50px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    width: 80%;
+    margin: auto;
+}
+
+.developer-section h2 {
+    font-size: 1.8rem;
+}
+
+.developer-section p {
+    font-size: 1.2rem;
+    font-style: italic;
+}
+
+/* Footer */
+footer {
+    margin-top: 40px;
+    padding: 15px;
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #00ff04, #0091ff, #ff00ff);
+    animation: colorChange 5s infinite alternate;
+}
+@keyframes colorChange {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .holi-text {
+        font-size: 2rem;
+    }
+    .message {
+        font-size: 1rem;
+    }
+    #wishButton {
+        font-size: 1.2rem;
+        padding: 12px 24px;
+    }
+}
+
+
+
+
+
+
+
+
+
