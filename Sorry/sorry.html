@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I'm Sorry</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #ff758c, #ff7eb3);
+            padding: 20px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+        .emoji {
+            font-size: 80px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .emoji:hover {
+            transform: scale(1.2);
+        }
+        .message {
+            font-size: 20px;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        .hidden {
+            display: none;
+        }
+        button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 18px;
+            cursor: pointer;
+            background-color: white;
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0px 3px 5px rgba(253, 253, 253, 0.8);
+            transition: all 0.3s;
+            width: 90%;
+            max-width: 250px;
+
+        }
+        button:hover {
+            background-color: #ff4d6d;
+            color: white;
+        }
+        .heart {
+            font-size: 50px;
+            display: none;
+            animation: heartbeat 1s infinite alternate;
+        }
+        @keyframes heartbeat {
+            from { transform: scale(1); }
+            to { transform: scale(1.2); }
+        }
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: white;
+            opacity: 0.7;
+            border-radius: 50%;
+            animation: fall linear infinite;
+        }
+        
+        @keyframes fall {
+            from { transform: translateY(-10vh); }
+            to { transform: translateY(100vh); }
+        }
+        @keyframes hearteffect {
+            from { transform: scale(1); text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); }
+            to { transform: scale(1.2); text-shadow: 0 0 20px rgba(255, 255, 255, 1); }
+        }
+    </style>
+</head>
+<body>
+    <h1>I'm really sorry! 😔</h1>
+    <p>Tap the emoji below...</p>
+    <div class="emoji" onclick="showOptions()">😞</div>
+    
+    <div id="options" class="hidden">
+        <p class="message">Do you forgive me?</p>
+        <button onclick="forgiveMe()">Forgive You 💖</button>
+        <button onclick="notYet()">Not Yet 😢</button>
+    </div>
+    
+    <p id="responseMessage" class="hidden message"></p>
+    <div class="heart hidden" id="heart">💖</div>
+    <button id="songButton" class="hidden" onclick="playSong()">Play Celebration Song 🎉</button>
+    <audio id="song" src="https://www.bensound.com/bensound-music/bensound-tenderness.mp3"></audio>
+    
+    <script>
+        let messages = [
+    "I know I messed up, but I promise to make it up to you. 💕",
+    "You mean so much to me. Please give me a chance to prove it! 🥺",
+    "I can't imagine life without you. I'm truly sorry. 💔",
+    "I'll do anything to fix this. You are precious to me. 🌹",
+    "I never meant to hurt you. Please let me make things right. 🙏",
+    "You're the light in my life. Forgive me for dimming it. 💡",
+    "Mistakes happen, but losing you is not an option for me. 😭",
+    "You deserve all the happiness, and I hate that I caused you pain. 💞",
+    "I wish I could turn back time and undo my mistake. ⏳",
+    "I feel terrible for hurting you. Please forgive me. 😢",
+    "You are my world, and I never want to lose you. 🌍",
+    "I promise to be better because you deserve the best. 💖",
+    "Every heartbeat of mine whispers your name. Don't stay mad. ❤️",
+    "I messed up, but my love for you will never change. 🥺",
+    "I regret my words and actions. I never meant to hurt you. 😞",
+    "My heart aches knowing that I made you sad. 💔",
+    "You’re the best thing that ever happened to me. Please forgive me. 💫",
+    "I need you in my life. Please don’t push me away. 😔",
+    "A day without you feels like a lifetime of sorrow. ⏳",
+    "Your happiness means everything to me. Let me make it up to you. 🥰",
+    "I feel incomplete without your smile. Let’s fix this. 😊",
+    "You have every right to be upset, but please give me another chance. 💕",
+    "I hate that I hurt you. I’ll do whatever it takes to earn your forgiveness. 🙇",
+    "Please don’t let one mistake define what we have. 💖",
+    "You are my favorite person in the world. I’m so sorry! 😞",
+    "If I could rewrite the past, I’d never let you down. ⏳",
+    "You bring joy to my life, and I hate that I took that away. 😔",
+    "Forgive me, and I promise to cherish every moment with you. 💐",
+    "I wish I could undo my mistake. Please give me a second chance. 🙏",
+    "I never want to be the reason for your sadness. I’m deeply sorry. 💖",
+    "Life is too short for us to stay upset with each other. Can we talk? 😞",
+    "No apology can ever be enough, but I hope my actions will show my sincerity. 💕",
+    "I wish I had handled things differently. Please let me fix this. 😢",
+    "I miss your smile. Let me earn it back. 😊",
+    "I promise to learn from my mistake and never repeat it. 🙏",
+    "You are the most important person in my life. I can’t lose you. 💖",
+    "I can’t sleep knowing that you’re upset with me. 😔",
+    "If sorry was enough, I’d say it a million times. But I’ll do better. ❤️",
+    "Your forgiveness means the world to me. Can we start over? 💫",
+    "I regret hurting you more than words can say. 😢",
+    "I’ll keep apologizing until you smile again. 🥺",
+    "I am truly sorry, and I will prove it with my actions. 🙌",
+    "Your love is my biggest blessing. Please don’t take it away. 😭",
+    "You are my safe place, and I hate that I made you feel unsafe. 💔",
+    "I cherish you more than anything. Please don’t let this break us. 💕",
+    "You are irreplaceable, and I promise to never take you for granted again. 💞",
+    "I will never stop trying to make this right. 🙏",
+    "I hate that I made you feel this way. You mean the world to me. 💖",
+    "I made a mistake, but my love for you is real. ❤️",
+    "I wish I could hold you right now and make it all better. 🤗",
+    "You are worth every effort I put in to make things right. 🥰",
+    "I’ll work every day to prove how much you mean to me. 💕",
+    "You deserve love and happiness. Let me be the one to give you that. 💖",
+    "I am sorry from the bottom of my heart. Please forgive me. 💔",
+    "No distance or silence can change how much I care about you. 🌎",
+    "I can’t bear to see you sad because of me. I’m sorry. 😞",
+    "I should have listened better. I promise to do so now. 👂",
+    "You are my sunshine, and I hate that I brought clouds into your day. ☀️",
+    "I know I disappointed you. Let me make it right. 😢",
+    "You deserve all the love and care. I failed, but I’ll do better. 💖",
+    "Even if you need time, I’ll be here waiting for your forgiveness. ⏳",
+    "I value you more than anything. I’m so sorry for hurting you. 💔",
+    "You are my greatest treasure. I’m sorry for making you feel otherwise. 💎",
+    "Let me earn back your trust, step by step. 🙏",
+    "No words can truly express how sorry I am. But I’ll show you. ❤️",
+    "I don’t want this to be the end of our story. Let’s fix it. 📖",
+    "I miss you. I miss us. Can we try again? 💖",
+    "I can’t change the past, but I can promise a better future. 💫",
+    "You deserve a love that never hurts. I’ll be that for you. 💕"
+];
+const emojis = ["😞", "🥺", "😟" ,"😢", "😭"];
+        let index = 0;
+
+        function showOptions() {
+            document.querySelector('.emoji').textContent = '😢';
+            document.getElementById('options').classList.remove('hidden');
+        }
+
+        function forgiveMe() {
+            document.querySelector('.emoji').textContent = '😊';
+            document.getElementById('responseMessage').textContent = "Yay! You forgave me! I promise to always cherish you! 💖";
+            document.getElementById('responseMessage').classList.remove('hidden');
+            document.getElementById('heart').classList.remove('hidden');
+            document.getElementById('songButton').classList.remove('hidden');
+            createConfetti();
+        }
+
+        function notYet() {
+            if (index < messages.length) {
+                document.querySelector('.emoji').textContent = emojis[index % emojis.length];   
+                document.getElementById('responseMessage').textContent = messages[index];
+                document.getElementById('responseMessage').classList.remove('hidden');
+                index++;
+            } else {
+                document.getElementById('responseMessage').textContent = "I won't give up. I'll keep trying to make things right. 💞";
+            }
+        }
+
+        function playSong() {
+            document.getElementById('song').play();
+        }
+
+        function createConfetti() {
+            for (let i = 0; i < 100; i++) {
+                let confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
+                confetti.style.left = `${Math.random() * 100}vw`;
+                confetti.style.animationDuration = `${Math.random() * 3 + 2}s`;
+                document.body.appendChild(confetti);
+
+                setTimeout(() => confetti.remove(), 5000);
+            }
+        }
+    </script>
+</body>
+</html>
